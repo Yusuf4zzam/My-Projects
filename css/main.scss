@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Epilogue", sans-serif;
+  background: #607d8b;
+  padding-bottom: 30px;
+}
+
+// Start Global Rules
+@mixin responsiveDesign($size) {
+  @if ($size == mobile) {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if ($size == small) {
+    @media (min-width: 767px) and (max-width: 991px) {
+      @content;
+    }
+  } @else if ($size == medium) {
+    @media (min-width: 991x) and (max-width: 1200px) {
+      @content;
+    }
+  } @else if ($size == large) {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+  @include responsiveDesign(small) {
+    width: 767px;
+  }
+  @include responsiveDesign(medium) {
+    width: 991px;
+  }
+
+  @include responsiveDesign(large) {
+    width: 1200px;
+  }
+}
+
+// End Global Rules
+
+// Mouse Animation
+.trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f44336;
+  animation: animate 1s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Start Header Box
+.header {
+  padding: 30px 0;
+  margin-bottom: 30px;
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    width: fit-content;
+    position: relative;
+    letter-spacing: 2px;
+    color: #fff;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 10%;
+      bottom: -10px;
+      width: 80%;
+      height: 5px;
+      border-radius: 5px;
+      background-color: #f44336;
+    }
+  }
+}
+
+// Content box
+.content {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    .box {
+      position: relative;
+      border-radius: 5px;
+      background: #fff;
+      padding: 0 0 50px 0;
+      overflow: hidden;
+      .image-box {
+        margin-bottom: 15px;
+        img {
+          width: 100%;
+          height: 250px;
+        }
+      }
+      .text-box {
+        padding: 0 15px;
+        h3 {
+          font-size: 25px;
+          margin-bottom: 10px;
+        }
+        p {
+          line-height: 1.5;
+          font-size: 15px;
+          color: #333;
+        }
+        a {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          font-size: 14px;
+          padding: 7px 15px;
+          background: #2196f3;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 3px;
+          text-decoration: none;
+          z-index: 99999999999999;
+        }
+      }
+    }
+  }
+}
